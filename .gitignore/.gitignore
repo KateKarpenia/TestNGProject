@@ -6,3 +6,4 @@ override.properties
 .idea
 *.iml
 *.log
+test-output
