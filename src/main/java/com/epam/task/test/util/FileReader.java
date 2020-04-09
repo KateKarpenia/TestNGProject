@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
-import com.epam.task.test.SourceTest;
+import com.epam.task.test.bean.SourceTest;
 
 public class FileReader
 {
@@ -34,7 +34,7 @@ public class FileReader
 		return sourceTestList;
 	}
 
-	public static Properties getProperties(String propFile)
+	private static Properties getProperties(String propFile)
 	{
 		File file = new File(propFile);
 		Properties properties = new Properties();

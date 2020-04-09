@@ -1,4 +1,4 @@
-package com.epam.task.test;
+package com.epam.task.test.bean;
 
 import java.util.List;
 import java.util.Objects;
