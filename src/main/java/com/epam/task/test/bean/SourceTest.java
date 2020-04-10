@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class SourceTest
 {
-	String name;
-	String sourceMethod;
-	List<String> params;
+	private String name;
+	private String sourceMethod;
+	private List<String> params;
 
 	public SourceTest(String name, String sourceMethod, List<String> params)
 	{

@@ -10,4 +10,5 @@ public class BaseConstants
 	public static final String PARAM_1 = "param1";
 	public static final String PARAM_2 = "param2";
 	public static final String CONFIG = "config";
+	public static final String PROP_FILE = "test.properties";
 }

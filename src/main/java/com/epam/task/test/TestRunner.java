@@ -14,8 +14,8 @@ public class TestRunner
 {
 	public static void main(String[] args) throws IOException, ClassNotFoundException
 	{
-		SourceTestLoader sourceTestLoader = new SourceTestLoader(ConfigLoader.load());
-		List<XmlSuite> suites = sourceTestLoader.setSourceTest();
+		SourceTestLoader sourceTestLoader = new SourceTestLoader();
+		List<XmlSuite> suites = sourceTestLoader.getSourceTests(ConfigLoader.load());
 		TestNG testNG = TestNGConfigurator.configure(suites);
 		testNG.run();
 	}
