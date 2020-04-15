@@ -9,46 +9,38 @@ public class SourceTest
 	private String sourceMethod;
 	private List<String> params;
 
-	public SourceTest(String name, String sourceMethod, List<String> params)
-	{
+	public SourceTest(String name, String sourceMethod, List<String> params) {
 		this.name = name;
 		this.sourceMethod = sourceMethod;
 		this.params = params;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getSourceMethod()
-	{
+	public String getSourceMethod() {
 		return sourceMethod;
 	}
 
-	public void setSourceMethod(String sourceMethod)
-	{
+	public void setSourceMethod(String sourceMethod) {
 		this.sourceMethod = sourceMethod;
 	}
 
-	public List<String> getParams()
-	{
+	public List<String> getParams() {
 		return params;
 	}
 
-	public void setParams(List<String> params)
-	{
+	public void setParams(List<String> params) {
 		this.params = params;
 	}
 
 	@Override
-	public boolean equals(Object o)
-	{
+	public boolean equals(Object o) {
 		if (this == o)
 			return true;
 		if (o == null || getClass() != o.getClass())
@@ -60,15 +52,13 @@ public class SourceTest
 	}
 
 	@Override
-	public int hashCode()
-	{
+	public int hashCode() {
 
 		return Objects.hash(name, sourceMethod, params);
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return "SourceTest{" +
 				"name='" + name + '\'' +
 				", sourceMethod='" + sourceMethod + '\'' +
