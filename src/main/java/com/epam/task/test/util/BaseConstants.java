@@ -12,4 +12,5 @@ public class BaseConstants
 	public static final String CONFIG = "config";
 	public static final String PROP_FILE = "test.properties";
 	public static final String FILE_EXTENTION = "txt";
+	public static final String FILE_EXTENTION_XLSX = "xlsx";
 }

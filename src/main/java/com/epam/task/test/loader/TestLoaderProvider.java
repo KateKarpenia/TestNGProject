@@ -17,6 +17,10 @@ public class TestLoaderProvider implements Provider<ITestLoader>
 		{
 			return new SourceTestLoader(config);
 		}
+		else if (sourcePath.endsWith(BaseConstants.FILE_EXTENTION_XLSX))
+		{
+			return new ExcelTestLoader(config);
+		}
 		return new DefaultTestLoader(config);
 	}
 }

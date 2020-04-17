@@ -9,6 +9,9 @@ public class SourceTest
 	private String sourceMethod;
 	private List<String> params;
 
+	public SourceTest() {
+	}
+
 	public SourceTest(String name, String sourceMethod, List<String> params) {
 		this.name = name;
 		this.sourceMethod = sourceMethod;
