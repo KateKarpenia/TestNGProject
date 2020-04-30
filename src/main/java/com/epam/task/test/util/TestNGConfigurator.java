@@ -19,35 +19,35 @@ public class TestNGConfigurator
 {
 	private static final Logger logger = LogManager.getLogger(TestNGConfigurator.class);
 
-	public static TestNG configure(List<SourceTest> sourceTests) throws ClassNotFoundException {
+	public static TestNG configure(List<SourceTest> sourceTests) {
 		List<XmlSuite> suitesList = new ArrayList<>();
-		TestNGConfigurator testNGConfigurator = new TestNGConfigurator();
-		for (SourceTest sourceTest : sourceTests)
-		{
+		sourceTests.forEach(sourceTest -> {
 			XmlSuite suite = new XmlSuite();
 			suite.setName(BaseConstants.SUIT_NAME + Utilities.getRandomName(4));
-			List<XmlSuite> suites = testNGConfigurator.getSuites(suite, sourceTest);
-			suitesList.addAll(suites);
-		}
+			getSuites(suite, sourceTest);
+			suitesList.add(suite);
+		});
 		TestNG testng = new TestNG();
 		testng.setXmlSuites(suitesList);
 		return testng;
 	}
 
-	private List<XmlSuite> getSuites(XmlSuite suite, SourceTest sourceTest) throws ClassNotFoundException {
-		List<XmlSuite> suites = new ArrayList<>();
-		List<XmlInclude> methodsToRun;
-		List<XmlClass> classes;
-
-		methodsToRun = configureMethods(sourceTest);
-		classes = configureClasses(sourceTest, methodsToRun);
+	private static void getSuites(XmlSuite suite, SourceTest sourceTest) {
+		List<XmlInclude> methodsToRun = configureMethods(sourceTest);
+		List<XmlClass> classes = null;
+		try
+		{
+			classes = configureClasses(sourceTest, methodsToRun);
+		}
+		catch (ClassNotFoundException e)
+		{
+			logger.debug("Class was not found " + e);
+		}
 		configureTest(suite, classes);
-		suites.add(suite);
 		logger.info(suite.toXml());
-		return suites;
 	}
 
-	private List<XmlInclude> configureMethods(SourceTest sourceTest) {
+	private static List<XmlInclude> configureMethods(SourceTest sourceTest) {
 		String methodToRun = sourceTest.getSourceMethod();
 		List<String> params = sourceTest.getParams();
 
@@ -62,7 +62,7 @@ public class TestNGConfigurator
 		return methodsToRun;
 	}
 
-	private List<XmlClass> configureClasses(SourceTest sourceTest, List<XmlInclude> methodsToRun)
+	private static List<XmlClass> configureClasses(SourceTest sourceTest, List<XmlInclude> methodsToRun)
 			throws ClassNotFoundException {
 		String className = sourceTest.getName();
 		Class<?> testClasss = Class.forName(BaseConstants.CLASS_PATH + className);
@@ -73,7 +73,7 @@ public class TestNGConfigurator
 		return classes;
 	}
 
-	private void configureTest(XmlSuite suite, List<XmlClass> classes) {
+	private static void configureTest(XmlSuite suite, List<XmlClass> classes) {
 		XmlTest test = new XmlTest(suite);
 		test.setName(BaseConstants.TEST_NAME + Utilities.getRandomName(4));
 		test.setXmlClasses(classes);

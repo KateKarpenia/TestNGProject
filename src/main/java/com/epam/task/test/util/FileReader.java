@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,13 +27,13 @@ import com.epam.task.test.bean.SourceTest;
 
 public class FileReader
 {
-	public static List<SourceTest> readParamsFromFile(Config config) throws FileNotFoundException {
+	private static final Logger logger = LogManager.getLogger(FileReader.class);
 
+	public static List<SourceTest> readParamsFromFile(Config config) throws FileNotFoundException {
 		String filePath = config.getFilePath();
 		String delimiter = config.getDelimiter();
 		List<SourceTest> sourceTestList = new ArrayList<>();
 		File file = new File(filePath);
-
 		InputStream inputStream = new FileInputStream(file);
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
 		{
@@ -43,7 +45,7 @@ public class FileReader
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			logger.debug(e);
 		}
 		return sourceTestList;
 	}
@@ -57,7 +59,7 @@ public class FileReader
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			logger.debug(e);
 		}
 		return properties;
 	}
